@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio
+{% endblock %}
+
+{% block main %}
+    <table>
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Amount</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for purchase in purchases %}
+            <tr>
+                <td>{{ purchase.symbol }}</td>
+                <td>{{ purchase.name }}</td>
+                <td>{{ purchase.amount }}</td>
+                <td>{{ purchase.price | usd }}</td>
+                <td>{{ purchase.total | usd }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td class="border-0"></td>
+                <td class="border-0"></td>
+                <td class="border-0"></td>
+                <td class="border-0 fw-bold text-end">Cash</td>
+                <td class="border-0 text-end">{{ cash | usd }}</td>
+            </tr>
+            <tr>
+                <td class="border-0"></td>
+                <td class="border-0"></td>
+                <td class="border-0"></td>
+                <td class="border-0 fw-bold text-end">TOTAL</td>
+                <td class="border-0 w-bold text-end">{{ total | usd }}</td>
+            </tr>
+        </tfoot>
+    </table>
+{% endblock %}
